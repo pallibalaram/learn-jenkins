@@ -27,13 +27,13 @@ pipeline {
             steps {
                 echo "this block is for Deploy"    
             }
-        stage("check params") {
-            steps{
-                sh """
-                    echo "Hello, ${params.PERSON}
-                    echo "BIOGRAPHY, ${params.BIOGRAPHY}
-                """
-            }
+            stage("check params") {
+                steps{
+                    sh """
+                        echo "Hello, ${params.PERSON}
+                        echo "BIOGRAPHY, ${params.BIOGRAPHY}
+                    """
+                }
         }
         }
     }
