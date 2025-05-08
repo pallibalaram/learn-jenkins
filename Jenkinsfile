@@ -33,6 +33,7 @@ pipeline {
                 sh """
                     echo "Hello, ${params.PERSON}
                     echo "BIOGRAPHY, ${params.BIOGRAPHY}
+                    echo "Toggle, ${params.TOGGLE}
                 """
             }
         }
