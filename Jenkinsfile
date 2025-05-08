@@ -33,9 +33,9 @@ pipeline {
                 sh """
                     echo "Hello, ${params.PERSON}
                     echo "Biography, ${params.BIOGRAPHY}
-                    echo "TOGGLE, ${params.TOGGLE}
-                    echo "CHOICE, ${params.CHOICE}
-                    echo "PASSWORD, ${params.PASSWORD}
+                    // echo "TOGGLE, ${params.TOGGLE}
+                    // echo "CHOICE, ${params.CHOICE}
+                    // echo "PASSWORD, ${params.PASSWORD}
                 """
             }
         }
