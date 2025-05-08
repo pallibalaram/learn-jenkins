@@ -32,8 +32,7 @@ pipeline {
             steps{
                 sh """
                     echo "Hello, ${params.PERSON}
-                    echo "BIOGRAPHY, ${params.BIOGRAPHY}
-                    echo "Toggle, ${params.TOGGLE}
+                    echo "Biography, ${params.BIOGRAPHY}
                 """
             }
         }
