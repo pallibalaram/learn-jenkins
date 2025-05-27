@@ -1,9 +1,16 @@
 pipeline {
     agent {
-    node {
-        label 'AGENT-1'
+        node {
+            label 'AGENT-1'
+        }
     }
-}
+    environment { 
+        GREETING = 'Hello Jenkins'
+    }
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+    }
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
@@ -15,42 +22,53 @@ pipeline {
 
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
-    
+    // build
     stages {
-        stage("Build") {
+        stage('Build') {
             steps {
-                echo "this block is for building"    
+                echo 'Building..'
             }
         }
-        stage("Test") {
+        stage('Test') {
             steps {
-                echo "this block is for Testing"    
+                echo 'Testing..'
             }
         }
-        stage("Deploy") {
+        stage('Deploy') {
             steps {
-                echo "this block is for Deploy"    
+                sh """
+                    echo  "Here I wrote shell script"
+                    echo "$GREETING"
+                    #sleep 10
+                """
             }
         }
-        stage("check params"){
+        stage('check params'){
             steps{
                 sh """
-                    echo "Hello, ${params.PERSON}
-                    echo "Biography, ${params.BIOGRAPHY}
-                    
+                    echo "Hello ${params.PERSON}"
+
+                    echo "Biography: ${params.BIOGRAPHY}"
+
+                    echo "Toggle: ${params.TOGGLE}"
+
+                    echo "Choice: ${params.CHOICE}"
+
+                    echo "Password: ${params.PASSWORD}"
                 """
             }
         }
     }
-    post {
-        always {
+    // post build
+    post { 
+        always { 
             echo 'I will always say Hello again!'
         }
-        success {
-            echo "pipeline is success"
+        failure { 
+            echo 'this runs when pipeline is failed, used generally to send some alerts'
         }
-        failure {
-            echo "pipeline is failed"
-        }    
+        success{
+            echo 'I will say Hello when pipeline is success'
+        }
     }
- }
+}
