@@ -1,8 +1,8 @@
 pipeline {
-    agent {
-        node {
-            label 'AGENT-1'
-        }
+    agent any {
+        // node {
+        //     label 'AGENT-1'
+        // }
     }
     environment { 
         GREETING = 'Hello Jenkins'
